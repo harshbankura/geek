@@ -6,26 +6,27 @@ import java.util.HashMap;
 
 
 // } Driver Code Ends
+
 class Solution {
 
     static int findFloor(int[] arr, int k) {
-        int n=arr.length;
+        int low=0;
+        int high=arr.length-1;
         int ans=-1;
-        int left=0;
-        int right=n-1;
-        while(left<=right){
-            int mid=(left+right)/2;
+        while(low<=high){
+            int mid=(low+high)/2;
             if(arr[mid]<=k){
                 ans=mid;
-                left=mid+1;
+                low=mid+1;
             }else{
-                right=mid-1;
+                high=mid-1;
             }
         }
         return ans;
         // write code here
     }
 }
+
 
 
 //{ Driver Code Starts.
