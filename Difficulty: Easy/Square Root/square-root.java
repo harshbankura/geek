@@ -1,21 +1,3 @@
-//{ Driver Code Starts
-import java.util.Scanner;
-
-class SquartRoot {
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while (t > 0) {
-            int a = sc.nextInt();
-            Solution obj = new Solution();
-            System.out.println(obj.floorSqrt(a));
-            t--;
-        }
-    }
-}
-// } Driver Code Ends
-
-
 /*You are required to complete
 this function*/
 
@@ -23,19 +5,24 @@ this function*/
 // x: element to find square root
 class Solution {
     int floorSqrt(int n) {
-        int low=1;
+        if(n==0||n==1) return n;
+        int low=0;
         int high=n;
-        int ans=1;
+        int ans=0;
         while(low<=high){
-            int mid=(low+high)/2;
-            if(mid*mid<=n){
+            int mid=low+(high-low)/2;
+            long sq=(long) mid*mid;
+            if(sq==n)return mid;
+            else if(sq<n){
                 ans=mid;
                 low=mid+1;
+                
             }else{
                 high=mid-1;
             }
         }
         return ans;
         // Your code here
+        
     }
 }
