@@ -1,68 +1,25 @@
-//{ Driver Code Starts
-import java.util.*;
-
-// Driver code
-class GFG {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int testcases = sc.nextInt(); // Taking number of test cases as input
-
-        while (testcases-- > 0) {
-            int V = sc.nextInt(); // Number of vertices
-            int E = sc.nextInt(); // Number of edges
-
-            // Initialize adjacency list
-            ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-            for (int i = 0; i < V; i++) {
-                adj.add(new ArrayList<>()); // Create a new list for each vertex
-            }
-
-            // Add edges to the adjacency list
-            for (int i = 0; i < E; i++) {
-                int u = sc.nextInt();
-                int v = sc.nextInt();
-                adj.get(u).add(v); // Adding edge u -> v
-                adj.get(v).add(u); // Adding edge v -> u (undirected graph)
-            }
-
-            // Create Solution object and call bfsOfGraph
-            Solution obj = new Solution();
-            ArrayList<Integer> result = obj.bfsOfGraph(V, adj);
-
-            // Print the result
-            for (int node : result) {
-                System.out.print(node + " ");
-            }
-            System.out.println();
-        }
-
-        sc.close(); // Close the scanner
-    }
-}
-
-// } Driver Code Ends
-
-
-// User function Template for Java
 class Solution {
-    // Function to return Breadth First Traversal of given graph.
-    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        ArrayList<Integer> ans= new ArrayList<>();
-        boolean visited[] = new boolean[V];
+    // Function to return Breadth First Search Traversal of given graph.
+    public ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> ans = new ArrayList<>();
         Queue<Integer> q = new LinkedList<>();
+        int V = adj.size();
+        boolean vis[]= new boolean[V];
+        
+        vis[0]=true;
         q.add(0);
-        visited[0]=true;
         while(!q.isEmpty()){
-            int node=q.poll();
-            ans.add(node);
-            for(int neighbour:adj.get(node)){
-                if(!visited[neighbour]){
-                    q.add(neighbour);
-                    visited[neighbour]=true;
+            int curr= q.poll();
+            ans.add(curr);
+            for(int neigh:adj.get(curr)){
+                if(!vis[neigh]){
+                    q.add(neigh);
+                    vis[neigh]=true;
                 }
             }
         }
         return ans;
         // code here
+        
     }
 }
